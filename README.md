@@ -1,4 +1,4 @@
-# evaluacion_tipo_1
+# evaluacion_tipo_2
 
 La siguiente evaluación tiene como objetivo medir las competencias asociadas al dominio de los siguientes tópicos:
 
