@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HistoryUserLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register']);
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    //History
+    Route::get('/historyIp',        [HistoryUserLoginController::class, 'index']);
+    Route::post('/history/search',  [HistoryUserLoginController::class, 'search']);
+    Route::put('/history/{id}',     [HistoryUserLoginController::class, 'update']);
+    Route::delete('/history/{id}',  [HistoryUserLoginController::class, 'destroy']);
+
+
+
 });
